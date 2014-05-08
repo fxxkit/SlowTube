@@ -1,0 +1,62 @@
+/* line 12, ../sass/myStyles.sass */
+.playerBtn_mask {
+  background: #1a1a1a;
+  width: 53px;
+  height: 27px;
+  font-size: 1.6em;
+  color: #5e5e5e;
+  position: absolute;
+}
+
+/* line 16, ../sass/myStyles.sass */
+.slowTube-controller-menu {
+  background: #1a1a1a;
+  width: 53px;
+  height: 27px;
+  font-size: 1.6em;
+  color: #5e5e5e;
+  position: absolute;
+  z-index: 999;
+  font-size: 1.2em;
+  left: 100px;
+  margin-bottom: 5px;
+}
+
+/* line 26, ../sass/myStyles.sass */
+.btn-hightlight {
+  color: white;
+}
+
+/* line 29, ../sass/myStyles.sass */
+#slowTube-controller {
+  padding-left: 40px;
+}
+
+/* line 33, ../sass/myStyles.sass */
+#slowTube-controller-container {
+  background: black;
+  width: 250px;
+  height: 30px;
+  /* RGBa with opacity */
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 999999;
+}
+
+/* line 42, ../sass/myStyles.sass */
+.slowTube-controller-container-wrap {
+  width: 250px;
+  position: relative;
+}
+
+/* line 50, ../sass/myStyles.sass */
+.no-occupy-hidden {
+  visibility: hidden;
+  z-index: -10;
+}
+
+/* line 55, ../sass/myStyles.sass */
+.no-occupy-show {
+  visibility: visible;
+  z-index: 987886;
+}

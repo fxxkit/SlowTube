@@ -1,0 +1,7 @@
+venv
+HelloWorld
+compass/.sass-cache/
+*.pyc
+*.db
+*.db3
+.DS_Store

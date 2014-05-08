@@ -1,0 +1,57 @@
+@import "compass/css3"
+
+@mixin youtube-control-btn()
+	background: #1a1a1a
+	width: 53px
+	height: 27px
+	font-size: 1.6em
+	color: #5e5e5e
+	position: absolute
+	//z-index: 9999999
+
+.playerBtn_mask
+	+youtube-control-btn()
+	//z-index: 9999999
+
+.slowTube-controller-menu
+	+youtube-control-btn()
+	z-index: 999
+
+	//left: -55px
+	//bottom: 50px
+	font-size: 1.2em
+	left: 100px
+	margin-bottom: 5px
+
+.btn-hightlight
+	color: white
+
+#slowTube-controller
+	padding-left: 40px
+	//margin-top: 5px
+
+#slowTube-controller-container
+	background: black
+	width: 250px
+	height: 30px
+	/* RGBa with opacity */
+	background: rgba(0, 0, 0, 0.8)
+	position: absolute
+	z-index: 999999
+
+.slowTube-controller-container-wrap
+	//background: yellow
+	//height: 85px
+	width: 250px
+	position: relative
+	//top: -38px
+	//left: 50%
+
+.no-occupy-hidden
+	//display: none
+	visibility: hidden
+	z-index: -10
+
+.no-occupy-show
+	visibility: visible
+	z-index: 987886 //arbitrary number
