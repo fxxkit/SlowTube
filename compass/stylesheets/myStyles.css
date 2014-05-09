@@ -2,7 +2,7 @@
 .playerBtn_mask {
   background: #1a1a1a;
   width: 53px;
-  height: 27px;
+  height: 22px;
   font-size: 1.6em;
   color: #5e5e5e;
   position: absolute;
@@ -12,7 +12,7 @@
 .slowTube-controller-menu {
   background: #1a1a1a;
   width: 53px;
-  height: 27px;
+  height: 22px;
   font-size: 1.6em;
   color: #5e5e5e;
   position: absolute;
@@ -29,10 +29,17 @@
 
 /* line 29, ../sass/myStyles.sass */
 #slowTube-controller {
-  padding-left: 40px;
+  margin-left: 5px;
 }
 
-/* line 33, ../sass/myStyles.sass */
+/* line 32, ../sass/myStyles.sass */
+#slowTube-controller-frame {
+  height: 22px;
+  padding-bottom: 1px;
+  font-style: bold;
+}
+
+/* line 38, ../sass/myStyles.sass */
 #slowTube-controller-container {
   background: black;
   width: 250px;
@@ -43,19 +50,19 @@
   z-index: 999999;
 }
 
-/* line 42, ../sass/myStyles.sass */
+/* line 47, ../sass/myStyles.sass */
 .slowTube-controller-container-wrap {
   width: 250px;
   position: relative;
 }
 
-/* line 50, ../sass/myStyles.sass */
+/* line 55, ../sass/myStyles.sass */
 .no-occupy-hidden {
   visibility: hidden;
   z-index: -10;
 }
 
-/* line 55, ../sass/myStyles.sass */
+/* line 60, ../sass/myStyles.sass */
 .no-occupy-show {
   visibility: visible;
   z-index: 987886;

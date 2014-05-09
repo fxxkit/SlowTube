@@ -13,11 +13,12 @@ var SlowTube = {
 		var $btnGroup = $('<div/>').addClass('btn-group');
 		var $stopBtn = $('<button/>').attr({"id": "slowTube-controller-stop"}).addClass("btn btn-default btn-xs").html('Stop');
 		var $startBtn = $('<button/>').attr({"id": "slowTube-controller-start"}).addClass("btn btn-default btn-xs").html('Start');
+		var $frameBtn = $('<button/>').attr({"id": "slowTube-controller-frame"}).addClass('btn btn-default btn-xs').html('▶▍');
 		var $container = $('<div/>').attr({"id": "slowTube-controller-container"}).addClass("slowTube-controller-container").hide();
 		var $container_wrap = $('<span/>').addClass("slowTube-controller-container-wrap");
 		var $playerBtn_mask = $('<button/>').addClass('playerBtn_mask glyphicon glyphicon-record');
 		//Append to Youtube
-		$btnGroup.append($startBtn).append($stopBtn);
+		$btnGroup.append($startBtn).append($stopBtn).append($frameBtn);
 		$container.append($sideBar).append($btnGroup);
 		$container_wrap.append($menuBtn).append($container);
 		$('#body-container').prepend($container_wrap);
@@ -36,15 +37,32 @@ var SlowTube = {
 		$('#slowTube-controller-start').on('click',function(){
 			SlowTube.startSlowMode();
 		});
+		$('.playerBtn_mask').on('click',function(){
+			SlowTube.stopSlowMode();
+		});
+		$('#slowTube-controller-frame').on('click',function(){
+			SlowTube.frameFoward();
+		})
 		$('#slowTube-controller-menu').on('click',function(){
 			SlowTube.showController();
 			console.log($('#movie_player').position());
 			console.log('height:' + $('#movie_player').height());
 			console.log('width:' + $('#movie_player').width());
 		});
-		$('#movie_player').on('resize',function(){
+		// Youtube resize btn
+		var $resizeBtn = $('#movie_player')
+						.find('.html5-video-controls')
+						.find('.html5-player-chrome')
+						.find('.ytp-button').eq(5);
+		$resizeBtn.on('click',function(){
 			console.log('Player resize!!');
-			SlowTube.menuLocate($container_wrap);
+			//Hide the inject element for a while
+			SlowTube.hideExtensionEl();
+
+
+			var delayReposition = _.bind(SlowTube.btnLocate, SlowTube);
+	  		_.delay(delayReposition, 1000,$container_wrap,$playerBtn_mask);
+			//SlowTube.btnLocate($container_wrap,$playerBtn_mask);
 
 		});
 	},
@@ -105,15 +123,40 @@ var SlowTube = {
 		var playerHeight = $('#movie_player').height();
 		var playerWidth = $('#movie_player').width();
 
-		var menuBtn_left = playerPosition['left'] + playerWidth - 320;
-		var menuBtn_top = playerPosition['top'] + playerHeight - 30;
+		var menuBtn_left = playerPosition['left'] + playerWidth - 360;
+		var menuBtn_top = playerPosition['top'] + playerHeight - 28;
 		$container_wrap.css({'left': menuBtn_left, 'top': menuBtn_top});
 
 
 		var maskBtn_left = playerPosition['left'];
 		var maskBtn_top = playerPosition['top'] + playerHeight - 25;
 		$playerBtn_mask.css({'left': maskBtn_left, 'top': maskBtn_top});
+		//Show the inject element again
+		SlowTube.showExtensionEl();
+	},
+	hideExtensionEl: function(){
+		$('.playerBtn_mask').css({'visibility': 'hidden'});
+		$('.slowTube-controller-container-wrap').css({'visibility': 'hidden'});
+	},
+	showExtensionEl: function(){
+		$('.playerBtn_mask').css({'visibility': 'visible'});
+		$('.slowTube-controller-container-wrap').css({'visibility': 'visible'});
+	},
+	frameFoward: function(){
+		var ytplayer = $('#movie_player');
+		if($(ytplayer).hasClass('playing-mode')){
+			$(ytplayer).find('.ytp-button-pause').click(); // pause the video if playing
+		}
+		else{// play 100ms and pause
+			$(ytplayer).find('.ytp-button-play').click();
+			var delayPause = _.bind(delayFramePause);
+			_.delay(delayPause,40,ytplayer);
+		}
 	}
+}
+
+function delayFramePause(ytplayer){
+	$(ytplayer).find('.ytp-button-pause').click();	
 }
 
 function delayContinuePlay(ytplayer, playerType){
