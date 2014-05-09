@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "SlowTube",
   "description": "Play Youtube video in slow motion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/*"],

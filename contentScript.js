@@ -46,9 +46,11 @@ var SlowTube = {
 		$('#slowTube-controller-menu').on('click',function(){
 			SlowTube.showController();
 		});
-		$('body').on('keypress',function(e){
-			if(e.keyCode == 102)
+		$('html').on('keypress',function(e){
+			//console.log('keypress')
+			if(e.keyCode == 102){
 				SlowTube.frameFoward();
+			}
 		});
 		// Youtube resize btn
 		var $resizeBtn = $('#movie_player')
