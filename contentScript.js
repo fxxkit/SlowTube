@@ -45,9 +45,10 @@ var SlowTube = {
 		})
 		$('#slowTube-controller-menu').on('click',function(){
 			SlowTube.showController();
-			console.log($('#movie_player').position());
-			console.log('height:' + $('#movie_player').height());
-			console.log('width:' + $('#movie_player').width());
+		});
+		$('body').on('keypress',function(e){
+			if(e.keyCode == 102)
+				SlowTube.frameFoward();
 		});
 		// Youtube resize btn
 		var $resizeBtn = $('#movie_player')
