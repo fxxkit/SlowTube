@@ -1,7 +1,20 @@
-$(function(){
-	console.log('This is SloeTube');
-	SlowTube.init();
-});
+var currentURL = '';
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+	console.log('[Slowtube]receive msg from background scripts');
+	//prevent duplicate button append
+	if(currentURL != msg.url){
+		if (msg.url.indexOf('www.youtube.com/watch') != -1){
+			console.log('[Slowtube] init');
+			if($('#body-container').find('.slowTube-controller-container-wrap').length === 0)
+				SlowTube.init();				
+		}
+		else{
+			console.log('[Slowtube] de_init');
+			SlowTube.de_init();
+		}
+	}
+	currentURL = msg.url;
+});	
 
 var SlowTube = {
 	slowFreqId: null,
@@ -68,6 +81,10 @@ var SlowTube = {
 			//SlowTube.btnLocate($container_wrap,$playerBtn_mask);
 
 		});
+	},
+	de_init: function(){
+		$('.slowTube-controller-container-wrap').remove();
+		$('.playerBtn_mask').remove();
 	},
 	slowPlaying: function(speed){
 		clearInterval(SlowTube.slowFreqId); // Clear the old setInterval first

@@ -2,7 +2,11 @@
   "manifest_version": 2,
   "name": "SlowTube",
   "description": "Play Youtube video in slow motion",
-  "version": "1.0.3",
+  "version": "1.0.4.1",
+  "background": {
+      "persistent":false,
+      "scripts": ["background.js","js/underscore-min.js"]
+    },
   "content_scripts": [
     {
       "matches": ["*://www.youtube.com/*"],
@@ -10,5 +14,5 @@
       "js": ["js/underscore-min.js","js/jquery-2.1.0.min.js","js/bootstrap.min.js","js/jquery-ui-1.10.4.custom.min.js","contentScript.js"]
     }
   ],
-  "permissions": ["*://www.youtube.com/watch*","*://i1.ytimg.com/*"]
+  "permissions": ["*://www.youtube.com/watch*", "webNavigation", "tabs"]
 }
