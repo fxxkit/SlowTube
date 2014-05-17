@@ -75,12 +75,14 @@ var SlowTube = {
 			//Hide the inject element for a while
 			SlowTube.hideExtensionEl();
 
-
 			var delayReposition = _.bind(SlowTube.btnLocate, SlowTube);
 	  		_.delay(delayReposition, 1000,$container_wrap,$playerBtn_mask);
-			//SlowTube.btnLocate($container_wrap,$playerBtn_mask);
-
 		});
+		// Window resize event
+		$(window).on('resize',function(){
+			SlowTube.btnLocate($container_wrap,$playerBtn_mask);
+		})
+
 	},
 	de_init: function(){
 		$('.slowTube-controller-container-wrap').remove();
